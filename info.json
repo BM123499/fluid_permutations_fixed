@@ -1,15 +1,15 @@
 {
-    "name" : "se_k2_fluid_permutations",
-    "version" : "0.4.3",
+    "name" : "fluid_permutations_fixed",
+    "version" : "0.4.4",
     "factorio_version" : "1.1",
-    "title" : "Fluid Permutations SE + K2",
-    "author" : "spiwn",
-    "description" : "Rotate fluid inputs and outputs of buildings (fork for Space Exploration + Krastorio2 compatibility)",
+    "title" : "Fluid Permutations Fixed",
+    "author" : "bmc4",
+    "description" : "Rotate fluid inputs and outputs of buildings",
     "dependencies" : [
         "base",
-        "Krastorio2",
-        "space-exploration",
-        "space-exploration-postprocess",
+        "(?)Krastorio2",
+        "(?)space-exploration",
+        "(?)space-exploration-postprocess",
         "(?)SeaBlock",
         "(?)omnimatter",
         "(?)omnimatter_science",
@@ -19,6 +19,7 @@
         "(?)ScienceCostTweakerM",
         "(?)MomoTweak",
         "(?)angelspetrochem",
+        "(?)deadlock_stacked_recipes",
         "(?)SuperExpensiveMode",
         "(?)H2O"
     ]

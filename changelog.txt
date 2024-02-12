@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.4.4
+Date: 12. 02. 2024
+  Bugfixes:
+    - Fixed Efficiency Modules being allowed on permutated recipes in SE (by bmc4)
+  Info:
+    - Added "Deadlock Stacked Recipes" as optional dependency
+---------------------------------------------------------------------------------------------------
 Version: 0.4.3
 Date: 12. 03. 2022
   Info:
