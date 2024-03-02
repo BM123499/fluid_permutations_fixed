@@ -36,6 +36,6 @@ data:extend({
     order = "z",
     inventory_order = "z",
     icon = "__fluid_permutations_fixed__/graphics/FluidPermutations.png",
-    icon_size = 128,
+    icon_size = 144,
   }
 })

@@ -1,26 +1,23 @@
 {
     "name" : "fluid_permutations_fixed",
-    "version" : "0.4.4",
+    "version" : "0.4.5",
     "factorio_version" : "1.1",
     "title" : "Fluid Permutations Fixed",
     "author" : "bmc4",
     "description" : "Rotate fluid inputs and outputs of buildings",
     "dependencies" : [
         "base",
-        "(?)Krastorio2",
-        "(?)space-exploration",
+        "? space-exploration",
         "(?)space-exploration-postprocess",
-        "(?)SeaBlock",
-        "(?)omnimatter",
+        "? Krastorio2",
+        "? angelspetrochem",
+        "? SeaBlock",
+        "? omnimatter",
         "(?)omnimatter_science",
+        "? ScienceCostTweakerM",
+        "? Geothermal",
+        "? Clowns-Science",
         "(?)MoreScience",
-        "(?)MoreSciencePacks",
-        "(?)Clowns-Science",
-        "(?)ScienceCostTweakerM",
-        "(?)MomoTweak",
-        "(?)angelspetrochem",
-        "(?)deadlock_stacked_recipes",
-        "(?)SuperExpensiveMode",
-        "(?)H2O"
+        "(?)deadlock_stacked_recipes"
     ]
 }

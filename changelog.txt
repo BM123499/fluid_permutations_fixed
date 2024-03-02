@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.4.5
+Date: 01. 03. 2024
+  Bugfixes:
+    - Fix image in icon-group not being aligned.
+  Features:
+    - Added compatibility with Geothermal (Hide flipped recipes)
+  Info:
+    - Show some optional dependencies (it should be compatible with other mods as well, tell me if it's not the case)
+---------------------------------------------------------------------------------------------------
 Version: 0.4.4
 Date: 12. 02. 2024
   Bugfixes:
