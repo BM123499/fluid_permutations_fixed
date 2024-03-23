@@ -28,6 +28,8 @@ local function change_fluid_recipe(event, change)
     if not (player.selected and player.selected.type == "assembling-machine") then
         return
     end
+
+    ---@type LuaEntity
     local building = player.selected
     local recipe = building.get_recipe()
     if not recipe then

@@ -5,6 +5,13 @@ local simpleMode = settings.startup[common.SIMPLE_MODE_SETTING].value
 
 local factorial = common.functions.factorial;
 
+---@param arr table{fluidbox_index: int}[]
+---@param i int
+---@param j int
+local function swap_fluidbox_idx(arr, i, j)
+    arr[i].fluidbox_index, arr[j].fluidbox_index = arr[j].fluidbox_index, arr[i].fluidbox_index
+end
+
 local function fluidCount(items)
     if items == nil then
         return 0
@@ -44,8 +51,12 @@ local function permutations(ttable, n, out)
 
     for i = 1, n do
         ttable[n], ttable[i] = ttable[i], ttable[n]
+        swap_fluidbox_idx(ttable, n, i)
+
         permutations(ttable, n - 1, out)
+
         ttable[n], ttable[i] = ttable[i], ttable[n]
+        swap_fluidbox_idx(ttable, n, i)
     end
 end
 
@@ -74,8 +85,13 @@ local function getFluidPermutations(tableOfItems)
     if simpleMode then
         local reversedFluids = {}
         for i = 1, #fluids do
-            reversedFluids[i] = fluids[#fluids + 1 - i]
+            reversedFluids[i] = table.deepcopy(fluids[#fluids + 1 - i])
         end
+
+        for i = 1, math.floor(#fluids / 2) do
+            swap_fluidbox_idx(reversedFluids, i, #fluids + 1 - i)
+        end
+
         fluidPermutations[1] = reversedFluids
         fluidPermutations[2] = fluids
     else
