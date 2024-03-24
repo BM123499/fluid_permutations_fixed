@@ -16,6 +16,7 @@ local common = {
     ["PERMUTATION_THRESHOLD_SETTING"] = "fluid-permutations-threshold",
     ["SIMPLE_MODE_SETTING"] = "fluid-permutations-simple-mode",
     ["CROSS_CYCLE_SETTING"] = "fluid-permutations-cross-cycle",
+    ["FILL_FLUIDBOXES"] = "fluid-permutations-fill-fluidboxes",
 
     ["NEXT_INGREDIENTS_PERMUTATION_INPUT"] = "next-ingredients-fluid-recipe",
     ["PREVIOUS_INGREDIENTS_PERMUTATION_INPUT"] = "previous-ingredients-fluid-recipe",

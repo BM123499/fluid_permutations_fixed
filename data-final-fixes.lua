@@ -3,6 +3,10 @@ local common = require("common")
 local permutationsThreshold = settings.startup[common.PERMUTATION_THRESHOLD_SETTING].value
 local simpleMode = settings.startup[common.SIMPLE_MODE_SETTING].value
 
+local fill = tostring(settings.startup[common.FILL_FLUIDBOXES].value)
+local fillResult = string.find(fill, "Result") ~= nil
+local fillIngredient = string.find(fill, "Ingredient") ~= nil
+
 local factorial = common.functions.factorial;
 
 ---@param arr table{fluidbox_index: int}[]
@@ -10,6 +14,15 @@ local factorial = common.functions.factorial;
 ---@param j int
 local function swap_fluidbox_idx(arr, i, j)
     arr[i].fluidbox_index, arr[j].fluidbox_index = arr[j].fluidbox_index, arr[i].fluidbox_index
+end
+
+local function remove_fluidbox_idx(list)
+    for i = 1, #list do
+        if list[i] ~= nil and list[i].type ~= nil and list[i].type == "fluid" then
+            list[i].fluidbox_index = nil
+            break
+        end
+    end
 end
 
 local function fluidCount(items)
@@ -200,6 +213,14 @@ local function inspectRecipe(recipe)
             else
                 permutationCount = expensiveIngredientsPermutationsMaxCount * expensiveResultsPermutationsMaxCount
             end
+
+            if fillResult and expensiveResultsFluidCount == 1 then
+                remove_fluidbox_idx(recipe.expensive.results)
+            end
+            if fillIngredient and expensiveIngredientsFluidCount == 1 then
+                remove_fluidbox_idx(recipe.expensive.ingredients)
+            end
+
             if permutationCount > permutationsThreshold then
                 return {}, nil, nil, {}, {}
             end
@@ -224,6 +245,13 @@ local function inspectRecipe(recipe)
         local normalResultsFluidCount = fluidCount(recipe.normal.results)
         local normalIngredientsPermutationsMaxCount = math.max(1, factorial(normalIngredientsFluidCount))
         local normalResultsPermutationsMaxCount = math.max(1, factorial(normalResultsFluidCount))
+
+        if fillResult and normalResultsFluidCount == 1 then
+            remove_fluidbox_idx(recipe.normal.results)
+        end
+        if fillIngredient and normalIngredientsFluidCount == 1 then
+            remove_fluidbox_idx(recipe.normal.ingredients)
+        end
 
         if not normalSameAsExpensive then
             if simpleMode then
@@ -304,6 +332,13 @@ local function inspectRecipe(recipe)
             permutationCount = math.max(1, ingredientsFluidCount) * math.max(1, resultsFluidCount)
         else
             permutationCount = ingredientsPermutationsMaxCount * resultsPermutationsMaxCount
+        end
+
+        if fillResult and resultsFluidCount == 1 then
+            remove_fluidbox_idx(recipe.results)
+        end
+        if fillIngredient and ingredientsFluidCount == 1 then
+            remove_fluidbox_idx(recipe.ingredients)
         end
 
         if permutationCount > permutationsThreshold then
@@ -433,7 +468,7 @@ local function generateLocalisation(recipe)
     return newRecipeLocalisedName
 end
 
-local function generateRecipies()
+local function generateRecipes()
     local affectedRecipies = 0
     local newRecipiesCount = 0
 
@@ -527,4 +562,4 @@ local function generateRecipies()
     end
 end
 
-generateRecipies()
+generateRecipes()

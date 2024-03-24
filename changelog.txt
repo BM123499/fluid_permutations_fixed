@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.5.0
+Date: 24. 03. 2024
+  Features:
+    - Added a setting to use all related fluidboxes if the ingredients/results has only one fluid.
+---------------------------------------------------------------------------------------------------
 Version: 0.4.6
 Date: 23. 03. 2024
   Features:
@@ -16,7 +21,7 @@ Date: 01. 03. 2024
 Version: 0.4.4
 Date: 12. 02. 2024
   Bugfixes:
-    - Fixed Efficiency Modules being allowed on permutated recipes in SE (by bmc4)
+    - Fixed Efficiency Modules being allowed on permutated recipes in SE (by 123499)
   Info:
     - Added "Deadlock Stacked Recipes" as optional dependency
 ---------------------------------------------------------------------------------------------------
