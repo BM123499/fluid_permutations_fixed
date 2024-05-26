@@ -5,17 +5,17 @@ Date: 26. 05. 2024
     - Added support to If I had a Nickel
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.2
-Date: 24. 03. 2024
+Date: 24. 04. 2024
   Features:
     - Added support to Manganese
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.1
-Date: 24. 03. 2024
+Date: 24. 04. 2024
   Features:
     - Added support to Exotic Industries
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.0
-Date: 24. 03. 2024
+Date: 24. 04. 2024
   Features:
     - Added a setting to use all related fluidboxes if the ingredients/results has only one fluid.
 ---------------------------------------------------------------------------------------------------
