@@ -140,14 +140,14 @@ local function togglePermutations(effects, force, enabled)
 end
 
 script.on_event(defines.events.on_research_finished, function(event)
-    local effects = event.research.effects
+    local effects = event.research.prototype.effects
     local force = event.research.force
     togglePermutations(effects, force, true)
 end)
 
 local function handleForceTechnologyEffectsReset(force)
     for _, technology in pairs(force.technologies) do
-        togglePermutations(technology.effects, force, technology.researched)
+        togglePermutations(technology.prototype.effects, force, technology.researched)
     end
 end
 
@@ -260,7 +260,7 @@ remote.add_interface(common.REMOTE_INTERFACE_NAME, remote_interface)
 
 local function buildRegistry()
     local simpleMode = settings.startup["fluid-permutations-simple-mode"].value
-    local difficulty = game.difficulty_settings.recipe_difficulty
+    local difficulty = 0
     -- n - normal - '0', e - expensive - '1', a - all - '-1'
     local difficultyMap = { n = 0, e = 1, a = -1}
     local fpPatternString = "%"..common.FP_RECIPE_AFFIX.."%-d([ane])%-i(%d+)%-r(%d+)"
@@ -269,7 +269,7 @@ local function buildRegistry()
     permutations = {}
     unlocks = {}
 
-    for _, recipe in pairs(game.recipe_prototypes) do
+    for _, recipe in pairs(prototypes.recipe) do
         local start, _, recipeDifficulty, ingredientRotation, resultRotation = string.find(recipe.name, fpPatternString)
         if start then
             local omnipermuteStart = string.find(recipe.name, omnipermPattern)
@@ -409,14 +409,14 @@ local function buildRegistry()
 
         unlocks[name] = recipeUnlocks
     end
-    global.permutations = permutations
-    global.unlocks = unlocks
+    storage.permutations = permutations
+    storage.unlocks = unlocks
 end
 
 script.on_load(function()
-    permutations = global.permutations or {}
-    unlocks = global.unlocks or {}
-    playerSettings = global.playerSettings or {}
+    permutations = storage.permutations or {}
+    unlocks = storage.unlocks or {}
+    playerSettings = storage.playerSettings or {}
 end)
 
 local function readPlayerSettings(playerIndex, player)
@@ -427,7 +427,7 @@ end
 
 script.on_configuration_changed(function(conf)
     playerSettings = {}
-    global.playerSettings = playerSettings
+    storage.playerSettings = playerSettings
 
     for _, player in pairs(game.connected_players) do
         playerSettings[player.index] = {}
@@ -445,7 +445,7 @@ script.on_init(function(conf)
     buildRegistry()
 
     playerSettings = {}
-    global.playerSettings = playerSettings
+    storage.playerSettings = playerSettings
 end)
 
 script.on_event(defines.events.on_player_joined_game, function(event)
